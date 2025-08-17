@@ -20,6 +20,14 @@ Content-Type: application/json
 
 ###
 GET http://localhost:8080/api/user/profile
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyQGV4YW1wbGUuY29tIiwiaWF0IjoxNzU1MDE5NjE4LCJleHAiOjE3NTUxMDYwMTh9.e0EDc_hySEPgjFJ4NboA0ZXDFGkRKui67vjQjXDy9WRPqcxPoKm7mXrv2K-5Cas6poOVUfmikl6qT0LsSnvG1g
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyQGV4YW1wbGUuY29tIiwiaWF0IjoxNzU1MzY3OTc5LCJleHAiOjE3NTU0NTQzNzl9.cw-9RlVdY6algC8ORC5Kx7fZ3rau3Icz6pGmQuUeZ5T2T3yiCyrb297IHt0SsdAZAPniecmdvXd5SsQEpZuDfA
 
+###
+POST http://localhost:8080/api/cart/add
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyQGV4YW1wbGUuY29tIiwiaWF0IjoxNzU1MzY3OTc5LCJleHAiOjE3NTU0NTQzNzl9.cw-9RlVdY6algC8ORC5Kx7fZ3rau3Icz6pGmQuUeZ5T2T3yiCyrb297IHt0SsdAZAPniecmdvXd5SsQEpZuDfA
+Content-Type: application/json
 
+{
+  "productId": 1,
+  "quantity": 2
+}

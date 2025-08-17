@@ -35,7 +35,9 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/register", "/api/auth/login").permitAll()
+                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/api/user/**").hasRole("USER")
+                        .requestMatchers("/api/cart/**").authenticated() //no role check
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
@@ -43,6 +45,7 @@ public class SecurityConfig {
                 .formLogin(form -> form.disable())
                 .build();
     }
+
 
     @Bean
     public AuthenticationManager authenticationManager() {

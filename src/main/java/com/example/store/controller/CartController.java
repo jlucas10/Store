@@ -2,27 +2,43 @@ package com.example.store.controller;
 
 import com.example.store.entity.Cart;
 import com.example.store.service.CartService;
-import lombok.RequiredArgsConstructor;
+import com.example.store.dto.CartItemRequest;
+import com.example.store.security.JWTUtil;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/cart")
-@RequiredArgsConstructor
 public class CartController {
 
-    private final CartService cartService;
+    @Autowired
+    private CartService cartService;
+
+    @Autowired
+    private JWTUtil jwtUtil;
 
     @PostMapping("/add")
-    public ResponseEntity<?> addToCart(@RequestParam Long userId,
-                                       @RequestParam Long productId,
-                                       @RequestParam int quantity) {
-        cartService.addItemToCart(userId, productId, quantity);
-        return ResponseEntity.ok("Item added to cart!");
+    public ResponseEntity<Cart> addToCart(@RequestBody CartItemRequest request, HttpServletRequest httpRequest) {
+        String token = extractToken(httpRequest);
+        String username = jwtUtil.extractUsername(token);
+
+        Cart updatedCart = cartService.addItemByUsername(username, request.getProductId(), request.getQuantity());
+        return ResponseEntity.ok(updatedCart);
     }
 
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<Cart> getUserCart(@PathVariable Long userId) {
-        return ResponseEntity.ok(cartService.getUserCart(userId));
+    @GetMapping("/view")
+    public ResponseEntity<Cart> viewCart(HttpServletRequest httpRequest) {
+        String token = extractToken(httpRequest);
+        String username = jwtUtil.extractUsername(token);
+
+        Cart cart = cartService.getCartByUsername(username);
+        return ResponseEntity.ok(cart);
+    }
+
+    private String extractToken(HttpServletRequest request) {
+        String header = request.getHeader("Authorization");
+        return header != null && header.startsWith("Bearer ") ? header.substring(7) : null;
     }
 }

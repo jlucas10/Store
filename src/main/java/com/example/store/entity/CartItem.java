@@ -8,15 +8,20 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CartItem {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
     private int quantity;
 
-    @ManyToOne
-    private Cart cart;
+    // Convenience constructor
+    public CartItem(Product product, int quantity) {
+        this.product = product;
+        this.quantity = quantity;
+    }
 }
