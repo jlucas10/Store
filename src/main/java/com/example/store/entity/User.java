@@ -1,5 +1,6 @@
 package com.example.store.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,5 +19,6 @@ public class User {
     private String email;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonBackReference
     private Cart cart;
 }

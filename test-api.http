@@ -19,15 +19,40 @@ Content-Type: application/json
 }
 
 ###
+### Get user profile
 GET http://localhost:8080/api/user/profile
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyQGV4YW1wbGUuY29tIiwiaWF0IjoxNzU1MzY3OTc5LCJleHAiOjE3NTU0NTQzNzl9.cw-9RlVdY6algC8ORC5Kx7fZ3rau3Icz6pGmQuUeZ5T2T3yiCyrb297IHt0SsdAZAPniecmdvXd5SsQEpZuDfA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyQGV4YW1wbGUuY29tIiwiaWF0IjoxNzU1NTQ2MjcyLCJleHAiOjE3NTU2MzI2NzJ9.ixN8p_V8hi67z67SvnFE8_WRbuKqX7-pFiJwWPh09U-Pxotypzwax9ug3TWmU87rFIQ1XiSLo_HxNZ396Jit2Q
 
 ###
+
+### Create a new product
+POST http://localhost:8080/api/products
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyQGV4YW1wbGUuY29tIiwiaWF0IjoxNzU1NTQ2MjcyLCJleHAiOjE3NTU2MzI2NzJ9.ixN8p_V8hi67z67SvnFE8_WRbuKqX7-pFiJwWPh09U-Pxotypzwax9ug3TWmU87rFIQ1XiSLo_HxNZ396Jit2Q
+
+
+{
+  "name": "Wireless Mouse",
+  "description": "Ergonomic wireless mouse with adjustable DPI",
+  "price": 24.99,
+  "imageUrl": "https://example.com/images/mouse.jpg",
+  "stock": 100
+}
+
+###
+
+### Add product to cart
 POST http://localhost:8080/api/cart/add
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyQGV4YW1wbGUuY29tIiwiaWF0IjoxNzU1MzY3OTc5LCJleHAiOjE3NTU0NTQzNzl9.cw-9RlVdY6algC8ORC5Kx7fZ3rau3Icz6pGmQuUeZ5T2T3yiCyrb297IHt0SsdAZAPniecmdvXd5SsQEpZuDfA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyQGV4YW1wbGUuY29tIiwiaWF0IjoxNzU1NTQ2MjcyLCJleHAiOjE3NTU2MzI2NzJ9.ixN8p_V8hi67z67SvnFE8_WRbuKqX7-pFiJwWPh09U-Pxotypzwax9ug3TWmU87rFIQ1XiSLo_HxNZ396Jit2Q
 Content-Type: application/json
 
 {
   "productId": 1,
   "quantity": 2
 }
+
+###
+
+### View Cart for Logged-In User
+GET http://localhost:8080/api/cart
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyQGV4YW1wbGUuY29tIiwiaWF0IjoxNzU1NTQ2MjcyLCJleHAiOjE3NTU2MzI2NzJ9.ixN8p_V8hi67z67SvnFE8_WRbuKqX7-pFiJwWPh09U-Pxotypzwax9ug3TWmU87rFIQ1XiSLo_HxNZ396Jit2Q

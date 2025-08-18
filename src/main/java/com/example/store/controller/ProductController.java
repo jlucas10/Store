@@ -24,4 +24,11 @@ public class ProductController {
     public ResponseEntity<Product> getProductById(@PathVariable Long id) {
         return ResponseEntity.ok(productService.getProductById(id));
     }
+
+    @PostMapping
+    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
+        Product savedProduct = productService.saveProduct(product);
+        return ResponseEntity.status(201).body(savedProduct);
+    }
 }
+

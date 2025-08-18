@@ -37,6 +37,15 @@ public class CartController {
         return ResponseEntity.ok(cart);
     }
 
+    @GetMapping
+    public ResponseEntity<Cart> getCart(HttpServletRequest request) {
+        String token = extractToken(request);
+        String username = jwtUtil.extractUsername(token);
+        Cart cart = cartService.getCartByUsername(username);
+        return ResponseEntity.ok(cart);
+    }
+
+
     private String extractToken(HttpServletRequest request) {
         String header = request.getHeader("Authorization");
         return header != null && header.startsWith("Bearer ") ? header.substring(7) : null;
