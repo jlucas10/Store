@@ -15,7 +15,7 @@ const LoginPage = () => {
         e.preventDefault();
         try {
             const res = await api.post('/auth/login', form);
-            localStorage.setItem('token', res.data.token);
+            localStorage.setItem('token', res.data);
             navigate('/products'); // or wherever you want to redirect
         } catch (err) {
             setMessage('Login failed.');

@@ -21,7 +21,8 @@ Content-Type: application/json
 ###
 ### Get user profile
 GET http://localhost:8080/api/user/profile
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyQGV4YW1wbGUuY29tIiwiaWF0IjoxNzU1NTQ2MjcyLCJleHAiOjE3NTU2MzI2NzJ9.ixN8p_V8hi67z67SvnFE8_WRbuKqX7-pFiJwWPh09U-Pxotypzwax9ug3TWmU87rFIQ1XiSLo_HxNZ396Jit2Q
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyQGV4YW1wbGUuY29tIiwiaWF0IjoxNzU3MTc3MDE4LCJleHAiOjE3NTcyNjM0MTh9.1izgvGVhXOak6AW5hHMS2drDrNlSECXFQH5BrRdeRPlLCKTnWUZ3GRJlxeWwHvBbnqgIg6HrOptYyPz6vxHRrA
+
 
 ###
 
@@ -50,6 +51,12 @@ Content-Type: application/json
   "productId": 1,
   "quantity": 2
 }
+
+###
+
+###
+GET http://localhost:8080/api/products
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyQGV4YW1wbGUuY29tIiwiaWF0IjoxNzU3MTc3OTkzLCJleHAiOjE3NTcyNjQzOTN9.nfiyBciHeJbnCFo0DrBmGWoUHlN3z_wyZUHY_bO84Dnjnzml7-lgacXbF0gyAiZM15ulA7P4UX9KIZzOmiY5lA
 
 ###
 

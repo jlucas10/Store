@@ -1,5 +1,7 @@
+// src/pages/ProductPage.js
 import React, { useEffect, useState } from 'react';
 import api from '../axiosConfig';
+import ProductCard from '../components/ProductCard';
 import './ProductPage.css';
 
 const ProductPage = () => {
@@ -9,7 +11,7 @@ const ProductPage = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const res = await api.get('/products'); // Adjust endpoint if needed
+                const res = await api.get('/products');
                 setProducts(res.data);
             } catch (err) {
                 setMessage('Failed to load products.');
@@ -19,18 +21,24 @@ const ProductPage = () => {
         fetchProducts();
     }, []);
 
+    const handleAddToCart = (product) => {
+        console.log('Added to cart:', product);
+        // You can later wire this to your cart context or backend
+    };
+
     return (
-        <div>
+        <div className="product-page">
             <h2>Products</h2>
             {message && <p>{message}</p>}
-            <ul>
+            <div className="product-grid">
                 {products.map(product => (
-                    <li key={product.id}>
-                        <strong>{product.name}</strong> - ${product.price}
-                        <button>Add to Cart</button>
-                    </li>
+                    <ProductCard
+                        key={product.id}
+                        product={product}
+                        onAddToCart={handleAddToCart}
+                    />
                 ))}
-            </ul>
+            </div>
         </div>
     );
 };
